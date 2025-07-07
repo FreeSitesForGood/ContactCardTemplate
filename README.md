@@ -15,6 +15,7 @@ This is a minimalist, Carrd-style contact card template built with [Eleventy](ht
 3. Commit to `main`
 4. Site builds automatically via GitHub Actions and publishes to GitHub Pages
 
+
 **Important:** In your repository, go to **Settings > Pages**, choose:
 - **Source**: Deploy from a branch
 - **Branch**: `gh-pages`, root folder
