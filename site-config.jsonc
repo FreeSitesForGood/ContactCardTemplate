@@ -1,0 +1,11 @@
+{
+  // Required
+  "name": "Free Sites For Good",
+  "email": "freesitesforgood@fakeemail.com",
+  "phone": "(123) 456-7890",
+
+  // Optional
+  "facebook": "freesitesforgood",
+  "instagram": "",
+  "tiktok": ""
+}
