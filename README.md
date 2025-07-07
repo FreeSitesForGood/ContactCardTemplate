@@ -15,9 +15,36 @@ This is a minimalist, Carrd-style contact card template built with [Eleventy](ht
 3. Commit to `main`
 4. Site builds automatically via GitHub Actions and publishes to GitHub Pages
 
-**Important:** In your repository, go to **Settings > Pages**, choose:
+## ⚙️ First-Time Setup
+### Enable GitHub Pages
+In your repository, go to **Settings > Pages**, then:
 - **Source**: Deploy from a branch
 - **Branch**: `gh-pages`, root folder
+
+### Fix Permissions for GitHub Actions
+If GitHub Actions fails to deploy due to permission issues (403 errors), you’ll need to:
+
+1. **Create a Personal Access Token (PAT)**
+   - Go to [GitHub Tokens](https://github.com/settings/tokens?type=beta)
+   - Generate a new token (classic) with these scopes:
+     - `repo`
+     - `workflow`
+
+2. **Add the Token to Your Repo**
+   - Go to **Settings > Secrets and variables > Actions**
+   - Click **New repository secret**
+   - Name it `PERSONAL_TOKEN`
+   - Paste your PAT
+
+3. **Update `.github/workflows/deploy.yml`**
+   - Change this line:
+     ```yaml
+     github_token: ${{ secrets.GITHUB_TOKEN }}
+     ```
+   - To this:
+     ```yaml
+     personal_token: ${{ secrets.PERSONAL_TOKEN }}
+     ```
 
 ## Requirements
 - GitHub account
