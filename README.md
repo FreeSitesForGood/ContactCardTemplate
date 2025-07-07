@@ -36,16 +36,6 @@ If GitHub Actions fails to deploy due to permission issues (403 errors), you’l
    - Name it `PERSONAL_TOKEN`
    - Paste your PAT
 
-3. **Update `.github/workflows/deploy.yml`**
-   - Change this line:
-     ```yaml
-     github_token: ${{ secrets.GITHUB_TOKEN }}
-     ```
-   - To this:
-     ```yaml
-     personal_token: ${{ secrets.PERSONAL_TOKEN }}
-     ```
-
 ## Requirements
 - GitHub account
 - (Optional) Domain name for pointing at GitHub Pages
