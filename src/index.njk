@@ -1,0 +1,81 @@
+{% from "social.njk" import socialLink %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="{{ siteConfig.description or 'Free websites for underfunded causes' }}">
+    <title>{{ siteConfig.name }}</title>
+    <link href="./styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+  <script>
+        // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+document.documentElement.classList.toggle(
+  "dark",
+  localStorage.theme === "dark" ||
+    (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches),
+);
+// Whenever the user explicitly chooses light mode
+localStorage.theme = "light";
+// Whenever the user explicitly chooses dark mode
+localStorage.theme = "dark";
+// Whenever the user explicitly chooses to respect the OS preference
+localStorage.removeItem("theme");
+  </script>
+  </head>
+  <body class="bg-white dark:bg-gray-950 text-gray-700 dark:text-gray-300 transition-colors duration-300">
+
+    <!-- Skip link for screen reader users -->
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-white text-blue-600 p-2 rounded-md z-50">
+      Skip to main content
+    </a>
+
+    <main id="main" role="main" class="relative grid min-h-screen grid-cols-[1fr_2.5rem_auto_2.5rem_1fr] grid-rows-[1fr_1px_auto_1px_1fr] [--pattern-fg:var(--color-gray-950)]/5 dark:[--pattern-fg:var(--color-white)]/10">
+      <div class="col-start-3 row-start-3 flex max-w-lg flex-col bg-gray-100 p-2 dark:bg-white/10 rounded-xl">
+        <div class="rounded-xl bg-white p-10 text-sm/7 dark:bg-gray-950">
+          <div class="space-y-6">
+            <h1 class="text-4xl font-bold tracking-tight">{{ siteConfig.name }}</h1>
+
+            {% if siteConfig.email or siteConfig.phone %}
+              <h2 class="text-xl font-semibold mt-4 border-t border-gray-300 pt-4 dark:border-gray-700">Contact Information</h2>
+              <ul class="space-y-3 mt-2">
+                {% if siteConfig.email %}
+                  <li>
+                    <a href="mailto:{{ siteConfig.email }}"
+           class="text-blue-600 flex items-center gap-2 hover:underline hover:text-blue-800 focus:outline-none focus-visible:ring focus-visible:ring-blue-500">
+                      <i class="fa fa-envelope" aria-hidden="true"></i>
+                      <span>{{ siteConfig.email }}</span>
+                    </a>
+                  </li>
+                {% endif %}
+                {% if siteConfig.phone %}
+                  <li>
+                    <a href="tel:{{ siteConfig.phone }}"
+           class="text-blue-600 flex items-center gap-2 hover:underline hover:text-blue-800 focus:outline-none focus-visible:ring focus-visible:ring-blue-500">
+                      <i class="fa fa-phone" aria-hidden="true"></i>
+                      <span>{{ siteConfig.phone }}</span>
+                    </a>
+                  </li>
+                {% endif %}
+              </ul>
+            {% endif %}
+
+            {% set keys = siteConfig.socialMediaLinks | dictsort %}
+
+            {% if keys | selectattr(1) | list | length %}
+              <h2 class="text-xl font-semibold mt-6 border-t border-gray-300 pt-4 dark:border-gray-700">Social Media</h2>
+              <ul class="space-y-3">
+                {% for item in keys %}
+                  {{ socialLink(item[0], item[1]) }}
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </main>
+
+  </body>
+</html>

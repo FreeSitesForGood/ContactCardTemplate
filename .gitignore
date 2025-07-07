@@ -1,0 +1,4 @@
+# Node dependencies
+node_modules/
+_site/
+src/_data/

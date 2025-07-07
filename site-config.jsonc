@@ -1,0 +1,16 @@
+{
+  // This will appear as your site title
+  "name": "Free Sites For Good",
+  
+  // Optional contact info
+  "email": "freesitesforgood@fakeemail.com",
+  "phone": "(123) 456-7890",
+
+   // Social media handles (or full URLs)
+  "socialMediaLinks": {
+    "facebook": "freesitesforgood",
+    "instagram": "freesitesforgood",
+    "tiktok": "",
+    "github": "FreeSitesForGood"
+  }
+}

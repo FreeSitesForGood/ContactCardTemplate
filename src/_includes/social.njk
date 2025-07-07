@@ -1,0 +1,60 @@
+{% macro socialLink(platform, usernameOrUrl) %}
+  {% set platforms = {
+    "facebook": {
+      "baseUrl": "https://facebook.com/",
+      "icon": "fa-facebook",
+      "colorClass": "text-blue-600 hover:text-blue-800"
+    },
+    "instagram": {
+      "baseUrl": "https://instagram.com/",
+      "icon": "fa-instagram",
+      "colorClass": "text-pink-600 hover:text-pink-800"
+    },
+    "tiktok": {
+      "baseUrl": "https://tiktok.com/@",
+      "icon": "fa-tiktok",
+      "colorClass": "text-black hover:text-gray-800"
+    },
+    "github": {
+      "baseUrl": "https://github.com/",
+      "icon": "fa-github",
+      "colorClass": "text-gray-800 dark:text-gray-200 hover:text-black dark:hover:text-white"
+    },
+    "linkedin": {
+      "baseUrl": "https://linkedin.com/in/",
+      "icon": "fa-linkedin",
+      "colorClass": "text-blue-700 hover:text-blue-900"
+    },
+    "youtube": {
+      "baseUrl": "https://youtube.com/",
+      "icon": "fa-youtube",
+      "colorClass": "text-red-600 hover:text-red-800"
+    },
+    "x": {
+      "baseUrl": "https://x.com/",
+      "icon": "fa-x-twitter",
+      "colorClass": "text-gray-700 hover:text-black"
+    },
+    "mastodon": {
+      "baseUrl": "",
+      "icon": "fa-mastodon",
+      "colorClass": "text-purple-600 hover:text-purple-800"
+    }
+  } %}
+
+  {% set data = platforms[platform] %}
+  {% if usernameOrUrl and data %}
+    {% set url = usernameOrUrl %}
+    {% if not usernameOrUrl | startswith('http') and data.baseUrl %}
+      {% set url = data.baseUrl + usernameOrUrl %}
+    {% endif %}
+    <li>
+      <a href="{{ url }}"
+         class="{{ data.colorClass }} flex items-center gap-2 hover:underline focus:outline-none focus-visible:ring focus-visible:ring-current"
+         target="_blank" rel="noopener noreferrer">
+        <i class="fab {{ data.icon }}" aria-hidden="true"></i>
+        <span>{{ platform | capitalize }}</span>
+      </a>
+    </li>
+  {% endif %}
+{% endmacro %}
