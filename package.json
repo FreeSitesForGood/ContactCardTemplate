@@ -1,0 +1,12 @@
+{
+  "name": "contact-card-template",
+  "scripts": {
+    "build:css": "npx @tailwindcss/cli -i ./src/styles-input.css -o ./src/styles.css --minify",
+    "build": "npm run build:css && eleventy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.2",
+    "@tailwindcss": "^4.1.11",
+    "comment-json": "^4.2.5"
+  }
+}

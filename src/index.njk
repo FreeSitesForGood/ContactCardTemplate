@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>{{ name }}</title>
+    <link href="/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+  </head>
+  <body>l
+<div class="relative grid min-h-screen grid-cols-[1fr_2.5rem_auto_2.5rem_1fr] grid-rows-[1fr_1px_auto_1px_1fr] bg-white [--pattern-fg:var(--color-gray-950)]/5 dark:bg-gray-950 dark:[--pattern-fg:var(--color-white)]/10">
+      <div class="col-start-3 row-start-3 flex max-w-lg flex-col bg-gray-100 p-2 dark:bg-white/10">
+        <div class="rounded-xl bg-white p-10 text-sm/7 text-gray-700 dark:bg-gray-950 dark:text-gray-300">
+          <div class="space-y-6">
+            <h1 class="text-4xl font-bold tracking-tight">{{ name }}</h1>
+            {% if email %}
+              <p class="mt-2">Email: <a href="mailto:{{ email }}" class="text-blue-600 underline underline-offset-2 hover:text-blue-800">{{ email }}</a>
+              </p>
+            {% endif %}
+            {% if phone %}
+              <p>Phone: <a href="tel:{{ phone }}" class="text-blue-600 underline underline-offset-2 hover:text-blue-800">{{ phone }}</a>
+              </p>
+            {% endif %}
+            <ul class="space-y-3">
+              {% if facebook %}
+                {% set fb_link = facebook %}
+                {% if not facebook.startswith('http') %}{% set fb_link = 'https://facebook.com/' + facebook %}
+                {% endif %}
+                <li>
+                  <a href="{{ fb_link }}" class="text-blue-600 flex items-center gap-2 hover:text-blue-800">
+                    <i class="fab fa-facebook"></i>
+                    <span>Facebook</span></a>
+                </li>
+              {% endif %}
+              {% if instagram %}
+                {% set ig_link = instagram %}
+                {% if not instagram.startswith('http') %}{% set ig_link = 'https://instagram.com/' + instagram %}
+                {% endif %}
+                <li>
+                  <a href="{{ ig_link }}" class="text-pink-600 flex items-center gap-2 hover:text-pink-800">
+                    <i class="fab fa-instagram"></i>
+                    <span>Instagram</span></a>
+                </li>
+              {% endif %}
+              {% if tiktok %}
+                {% set tt_link = tiktok %}
+                {% if not tiktok.startswith('http') %}{% set tt_link = 'https://tiktok.com/@' + tiktok %}
+                {% endif %}
+                <li>
+                  <a href="{{ tt_link }}" class="text-black flex items-center gap-2 hover:text-gray-800">
+                    <i class="fab fa-tiktok"></i>
+                    <span>TikTok</span></a>
+                </li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </body>
+    </html>
